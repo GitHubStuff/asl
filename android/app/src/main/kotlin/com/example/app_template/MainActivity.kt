@@ -1,4 +1,4 @@
-package reverse.domain.bundleSuffix
+package com.icodeforyou.asl
 
 import io.flutter.embedding.android.FlutterActivity
 

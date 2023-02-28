@@ -1,5 +1,5 @@
 /// Collection of FAB buttons for different types of brightness (SystemLite/Dark AppLite/Dark)
-import 'package:app_template/theme/brightness_setting.dart';
+import 'package:asl_quiz/theme/brightness_setting.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

@@ -4,7 +4,7 @@
 /// NOTE: call to [await AppTheme.setup()] should be done in the [main] of the app.
 import 'dart:io';
 
-import 'package:app_template/theme/brightness_setting.dart';
+import 'package:asl_quiz/theme/brightness_setting.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

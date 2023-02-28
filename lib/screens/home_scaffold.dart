@@ -1,6 +1,6 @@
 // ignore_for_file: sort_child_properties_last
 
-import 'package:app_template/widgets/expandable_fab.dart';
+import 'package:asl_quiz/widgets/expandable_fab.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -34,8 +34,8 @@ class HomeScaffold extends ConsumerWidget {
             child: SizedBox(
               width: double.infinity,
               child: AspectRatio(
-                aspectRatio: 860 / 572,
-                child: Assets.images.connor072.image(), // flutter_gen_runner
+                aspectRatio: 1 / 1,
+                child: Assets.asl1024.image(), // flutter_gen_runner
               ),
             ),
           ),
