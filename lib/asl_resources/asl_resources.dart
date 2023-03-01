@@ -41,11 +41,22 @@ const List<String> aslLetters = [
   '9'
 ];
 
+const double _symbolHeight = 100.0;
+const double _textHeight = 150.0;
+
 class ASLImage {
   final String name;
   ASLImage({required this.name});
-  Image get gesture => Image(image: AssetImage('assets/images/asl_$name.png'));
-  Image get answer => Image(image: AssetImage('assets/images/study_$name.png'));
+  Image get gesture => Image(
+        image: AssetImage('assets/images/asl_$name.png'),
+        height: _symbolHeight,
+        fit: BoxFit.fitHeight,
+      );
+  Image get answer => Image(
+        image: AssetImage('assets/images/study_$name.png'),
+        height: _textHeight,
+        fit: BoxFit.fitHeight,
+      );
   bool matched(String string) => name.toLowerCase() == string.toLowerCase();
   String wrong() {
     if (name == '0') return 'You guessed zero ';

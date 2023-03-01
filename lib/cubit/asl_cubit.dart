@@ -29,13 +29,25 @@ class AslCubit extends Cubit<AslState> {
   }
 
   void response(String letter) {
-    if (currentImage!.matched(letter)) {
+    // ASL-zero and ASL-letter(o) look the same, so handle that case
+    bool match = false;
+    switch (letter) {
+      case '0':
+      case 'o':
+        match = currentImage!.name == 'o' || currentImage!.name == '0';
+        break;
+      case '2':
+      case 'v':
+        match = currentImage!.name == 'v' || currentImage!.name == '2';
+        break;
+      default:
+        match = currentImage!.matched(letter);
+    }
+    if (match) {
       getRandomGesture();
     } else {
       aslModel.score?.wrongAnswer();
-      emit(
-        WrongAnswer(wrong: ASLImage(name: letter), correct: currentImage!),
-      );
+      emit(WrongAnswer(wrong: ASLImage(name: letter), correct: currentImage!));
     }
   }
 }
