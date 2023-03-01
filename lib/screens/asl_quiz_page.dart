@@ -78,7 +78,7 @@ class ASLQuizPage extends StatelessWidget {
             return column;
           }
           if (state is WrongAnswer) {
-            return IncorrectAnswer(guess: state.guess, answer: state.answer);
+            return IncorrectAnswer(incorrect: state.wrong, correct: state.correct);
           }
           return Text('Hello ${state.toString()}');
         });

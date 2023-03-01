@@ -19,7 +19,7 @@ class AslShowGesture extends AslState {
 }
 
 class WrongAnswer extends AslState {
-  final ASLImage guess;
-  final ASLImage answer;
-  WrongAnswer({required this.guess, required this.answer});
+  final ASLImage wrong;
+  final ASLImage correct;
+  WrongAnswer({required this.wrong, required this.correct});
 }

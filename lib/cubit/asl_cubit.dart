@@ -34,7 +34,7 @@ class AslCubit extends Cubit<AslState> {
     } else {
       aslModel.score?.wrongAnswer();
       emit(
-        WrongAnswer(guess: ASLImage(name: letter), answer: currentImage!),
+        WrongAnswer(wrong: ASLImage(name: letter), correct: currentImage!),
       );
     }
   }

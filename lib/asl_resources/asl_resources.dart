@@ -47,6 +47,19 @@ class ASLImage {
   Image get gesture => Image(image: AssetImage('assets/images/asl_$name.png'));
   Image get answer => Image(image: AssetImage('assets/images/study_$name.png'));
   bool matched(String string) => name.toLowerCase() == string.toLowerCase();
+  String wrong() {
+    if (name == '0') return 'You guessed zero ';
+    if (name == 'o') return 'You guessed "o" ';
+    if (name == '1') return 'You guessed "1" ';
+    return 'You guessed "$name" ';
+  }
+
+  String correction() {
+    if (name == '0') return 'It is actually zero ';
+    if (name == 'o') return 'It is actually "o" ';
+    if (name == '1') return 'It is actually one ';
+    return 'It is actually "$name" ';
+  }
 }
 
 class Score {
