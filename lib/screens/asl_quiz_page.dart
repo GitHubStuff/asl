@@ -20,7 +20,16 @@ class ASLQuizPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Home')),
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Modular.to.navigate(HomeScaffold.route);
+            cubit.finishQuiz();
+          },
+        ),
+        title: const Text('Entry ASL letter'),
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

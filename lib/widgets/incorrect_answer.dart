@@ -18,20 +18,21 @@ class IncorrectAnswer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Text(
           'You guessed "${guess.name}"',
           style: _textStyle,
         ),
+        guess.answer,
+        const SizedBox(height: 18.0),
         Text(
           'The Correct answer is "${answer.name}"',
           style: _textStyle,
         ),
-        const SizedBox(height: 18.0),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [guess.answer, answer.answer],
-        ),
+        
+        answer.answer,
+        const SizedBox(height: 24.0),
         ElevatedButton(
           onPressed: () => cubit.getRandomGesture(),
           child: const Text('Continue'),
