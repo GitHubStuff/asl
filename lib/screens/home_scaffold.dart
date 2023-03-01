@@ -1,15 +1,16 @@
 // ignore_for_file: sort_child_properties_last
 
-import 'package:asl_quiz/widgets/expandable_fab.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../gen/assets.gen.dart';
-import '../providers/riverpod.dart';
-import '../theme/app_theme.dart';
+import '../widgets/expandable_fab.dart';
 import '../widgets/set_brightness_fab_widget/brightness_theme_action_buttons.dart';
+import 'asl_quiz_page.dart';
 
 class HomeScaffold extends ConsumerWidget {
+  static const route = '/';
+
   const HomeScaffold({Key? key}) : super(key: key);
 
   @override
@@ -24,22 +25,14 @@ class HomeScaffold extends ConsumerWidget {
   }
 
   Widget homeWidget(BuildContext context, WidgetRef ref) {
-    final currentThemeMode = ref.watch(themeModeProvider);
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SizedBox(
-              width: double.infinity,
-              child: AspectRatio(
-                aspectRatio: 1 / 1,
-                child: Assets.asl1024.image(), // flutter_gen_runner
-              ),
-            ),
+          ElevatedButton(
+            onPressed: () => Modular.to.navigate(ASLQuizPage.route),
+            child: const Text('ASL Quiz'),
           ),
-          Text('${currentThemeMode.mode.name}: ${AppTheme.brightnessSetting(context).name}'),
         ],
       ),
     );
