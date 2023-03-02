@@ -43,21 +43,31 @@ const List<String> aslLetters = [
 
 class ASLModel {
   MySequence<ASLImage>? _sequence;
+  ASLImage? _currentImage;
   Score? score;
   int tally = 0;
 
-  void startQuiz() {
+  ASLImage? get currentImage => _currentImage;
+
+  bool nameMatch(String letter) => _currentImage?.matched(letter) ?? false;
+
+  void _loadSequence() {
     List<ASLImage> aslImages = [];
     aslLetters.asMap().forEach((_, letter) {
       aslImages.add(ASLImage(name: letter));
     });
     _sequence = MySequence(aslImages);
-    tally = aslImages.length;
+  }
+
+  void startQuiz() {
+    _loadSequence();
+    tally = _sequence?.count ?? 0;
     score = Score(totalImages: tally);
   }
 
-  ASLImage? randomGesture() {
+  ASLImage? randomASLImage() {
     tally--;
-    return _sequence?.randomItem();
+    _currentImage = _sequence?.randomItem();
+    return _currentImage;
   }
 }

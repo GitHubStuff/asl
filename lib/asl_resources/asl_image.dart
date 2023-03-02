@@ -7,7 +7,7 @@ const double _textHeight = 150.0;
 
 class ASLImage {
   static const placeholder = 'placeholder';
-  Image get aslPlaceHolder => Assets.asl1024.image(height: 100);
+  static Image get aslPlaceHolder => Assets.asl1024.image(height: 100);
   final String name;
   ASLImage({required this.name});
   Image get gesture => (name == placeholder)
@@ -24,7 +24,20 @@ class ASLImage {
           height: _textHeight,
           fit: BoxFit.fitHeight,
         );
-  bool matched(String string) => name.toLowerCase() == string.toLowerCase();
+
+  bool matched(String userInput) {
+    switch (userInput.toLowerCase()) {
+      case '0':
+      case 'o':
+        return name == 'o' || name == '0';
+      case '2':
+      case 'v':
+        return name == 'v' || name == '2';
+      default:
+        return name.toLowerCase() == userInput.toLowerCase();
+    }
+  }
+
   String wrong() {
     if (name == '0') return 'You guessed zero ';
     if (name == 'o') return 'You guessed "o" ';

@@ -5,6 +5,8 @@ class MySequence<T> {
   final List<T> _sourceList = [];
   final Random _random = Random();
 
+  int get count => _activeList.length;
+
   MySequence(List<T> items) {
     _activeList.addAll(items);
     _sourceList.addAll(items);

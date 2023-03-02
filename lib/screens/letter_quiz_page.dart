@@ -10,11 +10,17 @@ import 'home_scaffold.dart';
 
 final LetterCubit letterCubit = Modular.get<LetterCubit>();
 
-class LetterQuizPage extends StatelessWidget {
+class LetterQuizPage extends StatefulWidget {
   static const route = '/LetterQuizPage';
 
   const LetterQuizPage({super.key});
 
+  @override
+  State<LetterQuizPage> createState() => _LetterQuizPage();
+}
+
+class _LetterQuizPage extends State<LetterQuizPage> {
+  bool _revealGestures = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,18 +51,37 @@ class LetterQuizPage extends StatelessWidget {
         builder: (context, state) {
           debugPrint(state.toString());
           if (state is LetterInitial) letterCubit.startQuiz();
-          if (state is LetterStateQuizReady) return _showGestures(state: state);
-          return const Text('Zerk');
+          if (state is LetterStateQuizLoaded) {
+            return _showGestures(state: state);
+          }
+          return const CircularProgressIndicator();
         });
   }
 
-  Widget _showGestures({required LetterStateQuizReady state}) {
+  Widget _showGestures({required LetterStateQuizLoaded state}) {
+    Future.delayed(const Duration(seconds: 1), () {
+      if (!_revealGestures) {
+        setState(() {
+          _revealGestures = true;
+        });
+      }
+    });
     return Wrap(children: [
       KeyboardWidget(keys: [
-        for (ASLImage item in state.previous)
-          KeyboardKey(content: item.answer).widget(callback: () {
-            debugPrint('x');
-          }),
+        for (ASLImage item in state.gestureQuizModel.gestures)
+          Padding(
+            padding: const EdgeInsets.all(2.0),
+            child: AnimatedCrossFade(
+              crossFadeState: !_revealGestures ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+              duration: const Duration(milliseconds: 750),
+              firstChild: KeyboardKey(content: ASLImage.aslPlaceHolder).widget(callback: () {
+                debugPrint(item.name);
+              }),
+              secondChild: KeyboardKey(content: item.gesture).widget(callback: () {
+                debugPrint(item.name);
+              }),
+            ),
+          ),
       ])
     ]);
   }
