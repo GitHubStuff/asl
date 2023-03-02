@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../asl_resources/asl_resources.dart';
+import '../asl_resources/asl_image.dart';
 import '../screens/asl_quiz_page.dart';
 
 const _textStyle = TextStyle(fontSize: 24.0);

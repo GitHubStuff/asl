@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../asl_resources/asl_resources.dart';
+import '../classes/score.dart';
 
 class ScoreWidget extends StatelessWidget {
   final Score score;

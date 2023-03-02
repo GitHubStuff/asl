@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../asl_resources/asl_resources.dart';
+import '../asl_resources/asl_image.dart';
+import '../asl_resources/asl_model.dart';
+import '../classes/score.dart';
 
 part 'asl_state.dart';
 

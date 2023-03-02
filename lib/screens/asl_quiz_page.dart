@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../asl_resources/asl_resources.dart';
+import '../asl_resources/asl_model.dart';
 import '../classes/keyboard_key.dart';
 import '../cubit/asl_cubit.dart';
 import '../widgets/incorrect_answer.dart';
