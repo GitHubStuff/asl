@@ -65,7 +65,7 @@ class ASLQuizPage extends StatelessWidget {
           if (state is AslShowGesture) {
             final column = Column(
               children: [
-                state.aslImage.gesture,
+                state.aslImage.gestureImage,
                 KeyboardWidget(keys: [
                   for (String item in aslLetters)
                     KeyboardKey(content: Text(item)).widget(callback: () {

@@ -7,7 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../widgets/expandable_fab.dart';
 import '../widgets/set_brightness_fab_widget/brightness_theme_action_buttons.dart';
 import 'asl_quiz_page.dart';
-import 'letter_quiz_page.dart';
+import 'gesture_quiz_page.dart';
 
 class HomeScaffold extends ConsumerWidget {
   static const route = '/';
@@ -35,7 +35,7 @@ class HomeScaffold extends ConsumerWidget {
             child: const Text('ASL Quiz'),
           ),
           ElevatedButton(
-            onPressed: () => Modular.to.navigate(LetterQuizPage.route),
+            onPressed: () => Modular.to.navigate(GestureQuizPage.route),
             child: const Text('Gesture Quiz'),
           ),
         ],

@@ -10,14 +10,15 @@ class ASLImage {
   static Image get aslPlaceHolder => Assets.asl1024.image(height: 100);
   final String name;
   ASLImage({required this.name});
-  Image get gesture => (name == placeholder)
+  factory ASLImage.holder() => ASLImage(name: ASLImage.placeholder);
+  Image get gestureImage => (name == placeholder)
       ? aslPlaceHolder
       : Image(
           image: AssetImage('assets/images/asl_$name.png'),
           height: _symbolHeight,
           fit: BoxFit.fitHeight,
         );
-  Image get answer => (name == placeholder)
+  Image get answerImage => (name == placeholder)
       ? aslPlaceHolder
       : Image(
           image: AssetImage('assets/images/study_$name.png'),

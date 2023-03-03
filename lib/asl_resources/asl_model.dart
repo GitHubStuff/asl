@@ -18,7 +18,7 @@ const List<String> aslLetters = [
   'm',
   'n',
   'o',
-  'p',
+  'p', /*
   'q',
   'r',
   's',
@@ -38,7 +38,7 @@ const List<String> aslLetters = [
   '6',
   '7',
   '8',
-  '9'
+  '9' */
 ];
 
 class ASLModel {

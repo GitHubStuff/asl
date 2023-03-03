@@ -14,8 +14,12 @@ dependencies:
     sdk: flutter
   app_settings: ^4.2.0
   cupertino_icons: ^1.0.5
+  extensions_package:
+    git:
+      url: https://github.com/GitHubStuff/extensions_package.git
   flutter_bloc: ^8.1.2
   flutter_modular: ^5.0.3
+  fluttertoast: ^8.2.1
   hive_flutter: ^1.1.0
   hooks_riverpod: ^2.2.0
   riverpod_annotation: ^1.2.1
