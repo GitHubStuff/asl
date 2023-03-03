@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:confetti/confetti.dart';
 import 'package:extensions_package/extensions_package.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,6 +28,16 @@ class GestureQuizPage extends StatefulWidget {
 class _GestureQuizPage extends State<GestureQuizPage> {
   CrossFadeState _crossFadeState = CrossFadeState.showFirst;
 
+  final confettiiController = ConfettiController();
+
+  bool _startConfetti = true;
+
+  @override
+  void dispose() {
+    confettiiController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,6 +63,33 @@ class _GestureQuizPage extends State<GestureQuizPage> {
           if (state is GestureStateShowLeaderBoard) {
             return const GestureLeaderBoardListView();
           }
+          if (state is GestureStatePerfectScore) {
+            if (_startConfetti) {
+              _startConfetti = false;
+              Future.delayed(const Duration(milliseconds: 300), () {
+                setState(() {
+                  confettiiController.play();
+                });
+              });
+            }
+            confettiiController.duration = const Duration(seconds: 3);
+            return Center(
+              child: Stack(
+                alignment: AlignmentDirectional.center,
+                children: [
+                  ConfettiWidget(
+                    blastDirection: -pi / 2, // up
+                    confettiController: confettiiController,
+                    shouldLoop: true,
+                    blastDirectionality: BlastDirectionality.explosive,
+                    emissionFrequency: 0.02,
+                    numberOfParticles: 6,
+                  ),
+                  const Text('Perfect Score!!').fontSize(32.0),
+                ],
+              ),
+            );
+          }
           if (state is GestureStateQuizLoaded) {
             if (state.showToast) {
               Future.delayed(const Duration(milliseconds: 100), () {
@@ -66,16 +106,20 @@ class _GestureQuizPage extends State<GestureQuizPage> {
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [_showGestures(state: state)],
+                children: [
+                  _showGestures(state: state),
+                  Text('${state.remainingQuestions + 1}'),
+                ],
               ),
             );
           }
-          return const CircularProgressIndicator();
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
         });
   }
 
   Widget _showGestures({required GestureStateQuizLoaded state}) {
-    debugPrint('state: ${state.crossFadeState.name} cross: ${_crossFadeState.name}');
     if (state.crossFadeState != _crossFadeState) {
       Future.delayed(const Duration(milliseconds: 500), () {
         setState(() {

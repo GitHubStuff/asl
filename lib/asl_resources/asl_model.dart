@@ -6,7 +6,7 @@ const List<String> aslLetters = [
   'a',
   'b',
   'c',
-  'd',
+  'd', /*
   'e',
   'f',
   'g',
@@ -18,7 +18,7 @@ const List<String> aslLetters = [
   'm',
   'n',
   'o',
-  'p', /*
+  'p',
   'q',
   'r',
   's',

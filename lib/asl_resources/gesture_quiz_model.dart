@@ -23,6 +23,8 @@ class GestureQuizModel extends ASLModel {
 
   ASLImage? get questionASLImage => _questionsModel.randomASLImage();
 
+  int remainingQuestions() => _questionsModel.tally;
+
   @override
   void startQuiz() {
     super.startQuiz();

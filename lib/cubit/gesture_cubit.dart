@@ -21,6 +21,7 @@ class GestureCubit extends Cubit<GestureState> {
       emit(GestureStateQuizLoaded(
         gestureQuizModel: _gestureQuizModel,
         crossFadeState: CrossFadeState.showSecond,
+        remainingQuestions: _gestureQuizModel.remainingQuestions(),
         questionImage: _gestureQuizModel.questionASLImage,
       ));
     });
@@ -56,17 +57,14 @@ class GestureCubit extends Cubit<GestureState> {
     Future.delayed(const Duration(milliseconds: 250), () {
       final ASLImage? nextQuestion = _gestureQuizModel.questionASLImage;
       if (nextQuestion == null) {
-        emit(GestureStateShowLeaderBoard());
+        emit(_gestureQuizModel.numberOfLeaderBoardItems == 0 ? GestureStatePerfectScore() : GestureStateShowLeaderBoard());
         return;
       }
 
       _gestureQuizModel.shuffleKeyboard(currentCrossFade: crossFadeState);
       CrossFadeState newState = (crossFadeState == CrossFadeState.showFirst) ? CrossFadeState.showSecond : CrossFadeState.showFirst;
       emit(GestureStateQuizLoaded(
-        gestureQuizModel: _gestureQuizModel,
-        crossFadeState: newState,
-        questionImage: nextQuestion,
-      ));
+          gestureQuizModel: _gestureQuizModel, crossFadeState: newState, questionImage: nextQuestion, remainingQuestions: _gestureQuizModel.remainingQuestions()));
     });
   }
 
@@ -76,6 +74,7 @@ class GestureCubit extends Cubit<GestureState> {
       gestureQuizModel: _gestureQuizModel,
       crossFadeState: crossFadeState,
       questionImage: questionImage,
+      remainingQuestions: _gestureQuizModel.remainingQuestions(),
       showToast: true,
     ));
   }

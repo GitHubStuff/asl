@@ -12,10 +12,12 @@ class GestureStateQuizLoaded extends GestureState {
   final CrossFadeState crossFadeState;
   final ASLImage? questionImage;
   final bool showToast;
+  final int remainingQuestions;
   GestureStateQuizLoaded({
     required this.gestureQuizModel,
     required this.crossFadeState,
     required this.questionImage,
+    required this.remainingQuestions,
     this.showToast = false,
   });
 }
@@ -23,3 +25,5 @@ class GestureStateQuizLoaded extends GestureState {
 class GestureStateRevealGestures extends GestureState {}
 
 class GestureStateShowLeaderBoard extends GestureState {}
+
+class GestureStatePerfectScore extends GestureState {}
