@@ -4,9 +4,9 @@ import 'asl_image.dart';
 
 const List<String> aslLetters = [
   'a',
-  'b',
+  'b', /*
   'c',
-  'd', /*
+  'd',
   'e',
   'f',
   'g',

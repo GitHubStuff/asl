@@ -1,5 +1,4 @@
-import 'dart:math';
-
+import 'package:asl_quiz/widgets/confetti_message.dart';
 import 'package:confetti/confetti.dart';
 import 'package:extensions_package/extensions_package.dart';
 import 'package:flutter/material.dart';
@@ -64,44 +63,13 @@ class _GestureQuizPage extends State<GestureQuizPage> {
             return const GestureLeaderBoardListView();
           }
           if (state is GestureStatePerfectScore) {
-            if (_startConfetti) {
-              _startConfetti = false;
-              Future.delayed(const Duration(milliseconds: 300), () {
-                setState(() {
-                  confettiiController.play();
-                });
-              });
-            }
-            confettiiController.duration = const Duration(seconds: 3);
-            return Center(
-              child: Stack(
-                alignment: AlignmentDirectional.center,
-                children: [
-                  ConfettiWidget(
-                    blastDirection: -pi / 2, // up
-                    confettiController: confettiiController,
-                    shouldLoop: true,
-                    blastDirectionality: BlastDirectionality.explosive,
-                    emissionFrequency: 0.02,
-                    numberOfParticles: 6,
-                  ),
-                  const Text('Perfect Score!!').fontSize(32.0),
-                ],
-              ),
+            return ConfettiMessage(
+              overlays: [const Text('Perfect Score!').fontSize(32.0)],
             );
           }
           if (state is GestureStateQuizLoaded) {
             if (state.showToast) {
-              Future.delayed(const Duration(milliseconds: 100), () {
-                Fluttertoast.showToast(
-                    msg: "Try Again",
-                    toastLength: Toast.LENGTH_SHORT,
-                    gravity: ToastGravity.CENTER,
-                    timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.red,
-                    textColor: Colors.white,
-                    fontSize: 16.0);
-              });
+              _tryAgainToast();
             }
             return Center(
               child: Column(
@@ -162,6 +130,17 @@ class _GestureQuizPage extends State<GestureQuizPage> {
       ],
     );
   }
+
+  void _tryAgainToast() => Future.delayed(const Duration(milliseconds: 100), () {
+        Fluttertoast.showToast(
+            msg: "Try Again",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0);
+      });
 
   Future<void> _dialogBuilder(BuildContext context, {required ASLImage image, required CrossFadeState crossFadeState}) {
     return showDialog(
