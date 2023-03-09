@@ -1,7 +1,9 @@
 class Score {
   final int totalImages;
   late int correctImages;
-  String get score => (correctImages.toDouble() / totalImages.toDouble()).toStringAsFixed(2);
+  String get scoreAsString => ((correctImages.toDouble() / totalImages.toDouble() * 100.toDouble())).toStringAsFixed(0);
+
+  bool get isPerfectScore => correctImages == totalImages;
 
   Score({required this.totalImages}) {
     correctImages = totalImages;
