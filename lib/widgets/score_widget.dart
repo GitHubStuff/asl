@@ -14,7 +14,7 @@ class ScoreWidget extends StatelessWidget {
     if (score.isPerfectScore) {
       return ConfettiMessage(
         overlays: [const Text('Perfect Score!').fontSize(32.0)],
-      );
+      ); 
     }
     return Column(
       children: [

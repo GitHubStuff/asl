@@ -29,8 +29,6 @@ class _GestureQuizPage extends State<GestureQuizPage> {
 
   final confettiiController = ConfettiController();
 
-  bool _startConfetti = true;
-
   @override
   void dispose() {
     confettiiController.dispose();

@@ -67,7 +67,7 @@ class ASLQuizPage extends StatelessWidget {
               children: [
                 state.aslImage.gestureImage,
                 KeyboardWidget(keys: [
-                  for (String item in aslLetters)
+                  for (String item in ASLModel.aslLetters)
                     KeyboardKey(content: Text(item)).widget(callback: () {
                       cubit.response(item);
                     }),
